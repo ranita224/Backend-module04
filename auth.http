@@ -35,7 +35,7 @@ Content-Type: application/json
 
 ### 7 Create event WITH token - expect 201
 POST {{host}}/events
-Authorization: Bearer PASTE_ACCESS_TOKEN
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYWxtYXpAY2FtcHVzLmVkdS5ldCIsInJvbGVzIjpbInN0dWRlbnQiXSwiaWF0IjoxNzk1MTc3Nzc0LCJleHAiOjE3OTUxNzg2NzR9.XSvqDiZFtpnnTCHf9POWbi1_xNH1MOYVksx97lmNTNE
 Content-Type: application/json
 
 { "title": "Test", "category": "technology", "location": "Main Hall", "eventDate": "2026-12-20", "isPublished": true }
