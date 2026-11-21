@@ -1,3 +1,4 @@
+import { Public } from '../auth/decorators/public.decorator.js';
 import {
   Body,
   Controller,
@@ -23,6 +24,7 @@ interface HeaderSetter {
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
+  @Public()
   @Get()
   findAll(
     @Query() query: FindEventsQueryDto,
@@ -33,16 +35,19 @@ export class EventsController {
     return result;
   }
 
+  @Public()
   @Get('upcoming')
   findUpcoming() {
     return this.eventsService.findUpcoming();
   }
 
+  @Public()
   @Get('published') 
   findPublished() {
     return this.eventsService.findPublished();
   }
 
+  @Public()
   @Get(':id/sessions/:sessionId')
   findOneSession(
     @Param('id') id: string,
@@ -51,11 +56,13 @@ export class EventsController {
     return this.eventsService.findSession(id, sessionId);
   }
 
+  @Public()
   @Get(':id/sessions')
   findSessions(@Param('id') id: string) {
     return this.eventsService.findSessions(id);
   }
 
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.eventsService.findOne(id);
