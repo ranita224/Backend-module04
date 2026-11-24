@@ -1,0 +1,71 @@
+### Install the "REST Client" extension in VS Code, then click "Send Request" above each request.
+@baseUrl = http://localhost:3000/api
+
+### 1. Get all events (default page 1, limit 5)
+GET {{baseUrl}}/events
+
+### 2. Filter by category
+GET {{baseUrl}}/events?category=technology
+
+### 3. Filter by publication status
+GET {{baseUrl}}/events?isPublished=true
+
+### 4. Sort and paginate
+GET {{baseUrl}}/events?sortBy=eventDate&order=asc&page=2&limit=2
+
+### 5. Upcoming events
+GET {{baseUrl}}/events/upcoming
+
+### 6. Existing event
+GET {{baseUrl}}/events/evt-101
+
+### 7. Missing event -> 404
+GET {{baseUrl}}/events/not-real
+
+### 8. Sessions of an event
+GET {{baseUrl}}/events/evt-101/sessions
+
+### 9. One session under its event
+GET {{baseUrl}}/events/evt-101/sessions/ses-201
+
+### 9b. Session that belongs to a DIFFERENT event -> 404
+GET {{baseUrl}}/events/evt-101/sessions/ses-204
+
+### 10. Create a valid event -> 201
+POST {{baseUrl}}/events
+Content-Type: application/json
+
+{
+  "title": "Intro to Cloud Computing",
+  "description": "A beginner-friendly campus workshop.",
+  "location": "Engineering Block, Room 2",
+  "eventDate": "2026-12-04T09:00:00.000Z",
+  "category": "technology",
+  "isPublished": true
+}
+
+### 11. Create an event with a missing title -> 400
+POST {{baseUrl}}/events
+Content-Type: application/json
+
+{
+  "description": "No title here.",
+  "location": "Main Hall",
+  "eventDate": "2026-12-04T09:00:00.000Z",
+  "category": "technology"
+}
+
+### Extra: invalid sort field -> 400
+GET {{baseUrl}}/events?sortBy=price
+
+### Extra: invalid page -> 400
+GET {{baseUrl}}/events?page=abc
+
+### Extra (stretch): search, date range, location, published
+GET {{baseUrl}}/events?search=hack
+###
+GET {{baseUrl}}/events?dateFrom=2026-12-01&dateTo=2026-12-31
+###
+GET {{baseUrl}}/events?location=main
+###
+GET {{baseUrl}}/events/published
